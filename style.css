@@ -1,0 +1,62 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.formpage {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px 0px rgba(12, 12, 12, 0.5);
+    max-width: 400px;
+    width: 90%;
+    border: 2px solid #000;
+    background-color: #367588;
+    margin: 5px;
+}
+
+.formpage form {
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid #000;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+input,
+textarea,
+select {
+    width: 95%;
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 2px solid #000;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #367588;
+    color: #fff;
+    padding: 10px 10px;
+    margin: 5px;
+    border: 1px solid #367588;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+    background-color: #fff;
+    color: #367588;
+}
+
+.container p {
+    text-align: center;
+}
+
+a{
+    color: black;
+}

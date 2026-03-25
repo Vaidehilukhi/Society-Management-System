@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Make Payment</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div>
+      <h2>Make a Payment</h2>
+      <form id="paymentForm">
+        <label for="userId">Select User:</label>
+        <select id="userId" name="userId" required>
+          <option value="">-- Select User --</option>
+          <!-- User options will be inserted here -->
+        </select>
+
+        <label for="amount">Amount:</label>
+        <input type="number" id="amount" name="amount" required />
+
+        <label for="paymentMethod">Payment Method:</label>
+        <select id="paymentMethod" name="paymentMethod" required>
+          <option value="Credit Card">Credit Card</option>
+          <option value="PayPal">PayPal</option>
+          <option value="Bank Transfer">Bank Transfer</option>
+        </select>
+
+        <button type="submit">Submit Payment</button>
+        <button type="reset">Reset</button>
+        <button type="button" onclick="window.location.href='home.html'">
+          home
+        </button>
+      </form>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", async function () {
+        // Fetch Users and Populate Dropdown
+        const userDropdown = document.getElementById("userId");
+        try {
+          const response = await fetch("http://localhost:3000/users");
+          const users = await response.json();
+
+          users.forEach((user) => {
+            const option = document.createElement("option");
+            option.value = user.id;
+            option.textContent = `${user.id} - ${user.name}`;
+            userDropdown.appendChild(option);
+          });
+        } catch (error) {
+          console.error("Error fetching users:", error);
+        }
+
+        // Handle Payment Form Submission
+        document
+          .getElementById("paymentForm")
+          .addEventListener("submit", async function (e) {
+            e.preventDefault();
+            const userId = document.getElementById("userId").value;
+            const amount = document.getElementById("amount").value;
+            const paymentMethod =
+              document.getElementById("paymentMethod").value;
+
+            if (!userId) {
+              alert("Please select a user!");
+              return;
+            }
+
+            const response = await fetch("http://localhost:3000/payments", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ userId, amount, paymentMethod }),
+            });
+
+            const data = await response.json();
+            alert(data.message);
+            document.getElementById("paymentForm").reset(); // Reset form after submission
+          });
+      });
+    </script>
+  </body>
+</html>

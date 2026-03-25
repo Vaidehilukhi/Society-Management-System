@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visitor Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div>
+        <h2>Visitor Form</h2>
+
+        <form id="visitorForm">
+            <input type="text" id="visitor_name" placeholder="Full Name" required>
+            <input type="email" id="visitor_email" placeholder="Email" required>
+            <label for="user_select">Select User:</label>
+            <select id="user_select">
+                <option value="">Loading users...</option>
+            </select>
+            <textarea id="visitor_message" placeholder="reason for visit" required></textarea>
+
+
+            <button type="submit">Submit</button>
+            <button type="reset">Reset</button>
+           <button type="button"    onclick="window.location.href='home.html'">home</button> 
+        </form>
+        <p id="visitor_message_display"></p>
+    </div>
+    <script src="visitor.js"></script>
+    
+</body>
+
+</html>
